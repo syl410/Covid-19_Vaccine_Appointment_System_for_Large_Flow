@@ -1,0 +1,11 @@
+.btn{
+    text-decoration: none;
+    float: left;
+    padding:15px 45px;
+    margin:0 0 10px;
+    font:18px Sans-serif;
+    font-weight:700;
+    border-radius:0;
+    background-color:dodgerblue;
+    color:white;
+}

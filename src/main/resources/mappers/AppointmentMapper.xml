@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pharmacy.appointment.db.mappers.AppointmentMapper">
+  <resultMap id="BaseResultMap" type="com.pharmacy.appointment.db.po.Appointment">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="appointment_no" jdbcType="VARCHAR" property="appointmentNo" />
+    <result column="appointment_status" jdbcType="INTEGER" property="appointmentStatus" />
+    <result column="venue_id" jdbcType="BIGINT" property="venueId" />
+    <result column="user_id" jdbcType="BIGINT" property="userId" />
+    <result column="appointment_count" jdbcType="INTEGER" property="appointmentCount" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="confirm_time" jdbcType="TIMESTAMP" property="confirmTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, appointment_no, appointment_status, venue_id, user_id, appointment_count, create_time,
+    confirm_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from appointment
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from appointment
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.pharmacy.appointment.db.po.Appointment">
+    insert into appointment (id, appointment_no, appointment_status,
+      venue_id, user_id, appointment_count,
+      create_time, confirm_time)
+    values (#{id,jdbcType=BIGINT}, #{appointmentNo,jdbcType=VARCHAR}, #{appointmentStatus,jdbcType=INTEGER},
+      #{venueId,jdbcType=BIGINT}, #{userId,jdbcType=BIGINT}, #{appointmentCount,jdbcType=INTEGER},
+      #{createTime,jdbcType=TIMESTAMP}, #{confirmTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pharmacy.appointment.db.po.Appointment">
+    insert into appointment
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="appointmentNo != null">
+        appointment_no,
+      </if>
+      <if test="appointmentStatus != null">
+        appointment_status,
+      </if>
+      <if test="venueId != null">
+        venue_id,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="appointmentCount != null">
+        appointment_count,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="confirmTime != null">
+        confirm_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="appointmentNo != null">
+        #{appointmentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentStatus != null">
+        #{appointmentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="venueId != null">
+        #{venueId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="appointmentCount != null">
+        #{appointmentCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmTime != null">
+        #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pharmacy.appointment.db.po.Appointment">
+    update appointment
+    <set>
+      <if test="appointmentNo != null">
+        appointment_no = #{appointmentNo,jdbcType=VARCHAR},
+      </if>
+      <if test="appointmentStatus != null">
+        appointment_status = #{appointmentStatus,jdbcType=INTEGER},
+      </if>
+      <if test="venueId != null">
+        venue_id = #{venueId,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null">
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="appointmentCount != null">
+        appointment_count = #{appointmentCount,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="confirmTime != null">
+        confirm_time = #{confirmTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pharmacy.appointment.db.po.Appointment">
+    update appointment
+    set appointment_no = #{appointmentNo,jdbcType=VARCHAR},
+      appointment_status = #{appointmentStatus,jdbcType=INTEGER},
+      venue_id = #{venueId,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=BIGINT},
+      appointment_count = #{appointmentCount,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      confirm_time = #{confirmTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <select id="selectByAppointmentNo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from appointment
+    where appointment_no = #{appointmentNo,jdbcType=BIGINT}
+  </select>
+</mapper>

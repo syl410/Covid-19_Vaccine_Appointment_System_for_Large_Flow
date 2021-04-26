@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7" />
+  <title>Covid-19 Vaccine Appointment</title>
+
+  <link rel="stylesheet" type="text/css" href="/css/global.css"/>
+  <link rel="stylesheet" type="text/css" href="/css/btn.css" />
+  <link rel="stylesheet" type="text/css" href="/css/main_page.css" />
+</head>
+
+<body>
+
+  <div style="margin-left: 2em;">
+    <div>
+      <h1 style="color:dodgerblue">PharmacyABC - Covid-19 Vaccine Appointment Web</h1>
+      <h3>Everyone ages 16+ are now eligible to receive COVID-19 vaccines.</h3>
+      <h3>Find available spots and make an appointment</h3>
+      <h3>New spots for next day will be available at 12:00 a.m..</h3>
+    </div>
+
+    <br>
+    <br>
+    <!--select date and time-->
+    <label>Choose a date:</label>
+    <select name="date">
+      <option>April 26th</option>
+      <option>April 27th</option>
+    </select>
+
+    <label>Choose a time:</label>
+    <select name="time">
+      <option >9:00 a.m.</option>
+      <option>11:00 a.m.</option>
+      <option>1:00 p.m.</option>
+      <option>3:00 p.m.</option>
+    </select>
+
+    <br>
+    <br>
+
+    <div class="spots-list" id="app">
+      <ul class="spot_ul" id="appointment">
+        <tr th:each="venue,vStat : ${venues}">
+          <li class="spot-detail">
+            <div>
+              <b th:text="${pharmacies[vStat.index].pharmacyName}"></b>
+            </div>
+            <div>
+              <span th:text="${pharmacies[vStat.index].pharmacyAddress}"></span>
+            </div>
+            <br>
+            <div>
+              <span th:text="${venue.vaccine}"></span>
+            </div>
+            <div>Remaining spots:
+              <b style="color:royalblue" th:text="${spots[vStat.index]}"></b>
+            </div>
+            <a class='btn-block btn-check' th:href="@{'/details/'+${venue.id}}" target='_blank'>Check Availability</a>
+          </li>
+        </tr>
+      </ul>
+    </div>
+  </div>
+
+
+</body>
+
+</html>

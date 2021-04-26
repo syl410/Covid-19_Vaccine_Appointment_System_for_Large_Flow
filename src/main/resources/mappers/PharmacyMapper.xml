@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pharmacy.appointment.db.mappers.PharmacyMapper">
+  <resultMap id="BaseResultMap" type="com.pharmacy.appointment.db.po.Pharmacy">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pharmacy_name" jdbcType="VARCHAR" property="pharmacyName" />
+    <result column="pharmacy_address" jdbcType="VARCHAR" property="pharmacyAddress" />
+    <result column="pharmacy_phone" jdbcType="VARCHAR" property="pharmacyPhone" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pharmacy_name, pharmacy_address, pharmacy_phone
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from pharmacy
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from pharmacy
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.pharmacy.appointment.db.po.Pharmacy">
+    insert into pharmacy (id, pharmacy_name, pharmacy_address,
+      pharmacy_phone)
+    values (#{id,jdbcType=BIGINT}, #{pharmacyName,jdbcType=VARCHAR}, #{pharmacyAddress,jdbcType=VARCHAR},
+      #{pharmacyPhone,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pharmacy.appointment.db.po.Pharmacy">
+    insert into pharmacy
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="pharmacyName != null">
+        pharmacy_name,
+      </if>
+      <if test="pharmacyAddress != null">
+        pharmacy_address,
+      </if>
+      <if test="pharmacyPhone != null">
+        pharmacy_phone,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="pharmacyName != null">
+        #{pharmacyName,jdbcType=VARCHAR},
+      </if>
+      <if test="pharmacyAddress != null">
+        #{pharmacyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="pharmacyPhone != null">
+        #{pharmacyPhone,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pharmacy.appointment.db.po.Pharmacy">
+    update pharmacy
+    <set>
+      <if test="pharmacyName != null">
+        pharmacy_name = #{pharmacyName,jdbcType=VARCHAR},
+      </if>
+      <if test="pharmacyAddress != null">
+        pharmacy_address = #{pharmacyAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="pharmacyPhone != null">
+        pharmacy_phone = #{pharmacyPhone,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pharmacy.appointment.db.po.Pharmacy">
+    update pharmacy
+    set pharmacy_name = #{pharmacyName,jdbcType=VARCHAR},
+      pharmacy_address = #{pharmacyAddress,jdbcType=VARCHAR},
+      pharmacy_phone = #{pharmacyPhone,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

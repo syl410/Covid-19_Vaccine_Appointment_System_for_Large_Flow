@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="utf-8"/>
+    <meta http-equiv="X-UA-Compatible" content="IE=9; IE=8; IE=7; IE=EDGE">
+    <meta http-equiv="X-UA-Compatible" content="IE=EmulateIE7"/>
+    <title>Appointment Spot details</title>
+
+    <link rel="stylesheet" type="text/css" href="/css/global.css"/>
+    <link rel="stylesheet" type="text/css" href="/css/btn.css"/>
+</head>
+
+<body>
+<div style="margin-left: 2em;">
+    <div>
+        <h2 style="color:dodgerblue" th:text="${pharmacy.pharmacyName}"></h2>
+    </div>
+    <br>
+    <div>
+        <div>
+            <b>Appointment Time:</b>
+            <br>
+            <i>9:00 a.m. March 25th</i>
+        </div>
+        <br>
+        <div>
+            <b>Pharmacy Location:</b>
+            <br>
+            <i th:text="${pharmacy.pharmacyAddress}"></i>
+        </div>
+        <br>
+        <div>
+            <b>Vaccine Manufacturer:</b>
+            <br>
+            <i th:text="${venue.vaccine}"></i>
+        </div>
+        <br>
+        <div>
+            <b>Available Spots:</b>
+            <br>
+            <i style="color:royalblue" th:text="${venue.availableSpot}"></i>
+        </div>
+    </div>
+    <br>
+    <div>
+        <a th:href="'/appointment/schedule/511/' + ${venue.id}" target="_blank"
+           class="btn">Schedule Appointment</a>
+    </div>
+</div>
+</body>
+
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+
+<head>
+    <title>Add appointment spots </title>
+    <link rel="stylesheet" type="text/css" href="/css/global.css"/>
+</head>
+
+<body>
+
+<div style="margin-left: 2em;">
+    <div>
+        <div>
+            <h4>Add new appointment spots for a specific location and time</h4>
+        </div>
+        <div>
+            <form th:action="@{/addVenueAction}" method="post">
+                Vaccine Manufacturer:<input type="text" name="vaccine"><br><br>
+                Pharmacy ID：<input type="text" name="pharmacyId"><br><br>
+                Appointment Time：<input type="text" name="appointmentTime"><br><br>
+                Number of Spots：<input type="text" name="spotNumber"><br><br>
+                Start Time：<input type="datetime-local" name="startTime"><br><br>
+                End Time：<input type="datetime-local" name="endTime"><br><br>
+                <input type="submit" value="Submit">
+            </form>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>

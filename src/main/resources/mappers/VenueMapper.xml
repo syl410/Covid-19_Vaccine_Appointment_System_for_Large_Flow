@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.pharmacy.appointment.db.mappers.VenueMapper">
+  <resultMap id="BaseResultMap" type="com.pharmacy.appointment.db.po.Venue">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="vaccine" jdbcType="VARCHAR" property="vaccine" />
+    <result column="pharmacy_id" jdbcType="BIGINT" property="pharmacyId" />
+    <result column="appointment_time" jdbcType="INTEGER" property="appointmentTime" />
+    <result column="venue_status" jdbcType="INTEGER" property="venueStatus" />
+    <result column="start_time" jdbcType="TIMESTAMP" property="startTime" />
+    <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
+    <result column="total_spot" jdbcType="INTEGER" property="totalSpot" />
+    <result column="available_spot" jdbcType="INTEGER" property="availableSpot" />
+    <result column="lock_spot" jdbcType="INTEGER" property="lockSpot" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, vaccine, pharmacy_id, appointment_time, venue_status, start_time, end_time,
+    total_spot, available_spot, lock_spot
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from venue
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from venue
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.pharmacy.appointment.db.po.Venue">
+    insert into venue (id, vaccine, pharmacy_id,
+      appointment_time, venue_status,
+      start_time, end_time, total_spot,
+      available_spot, lock_spot)
+    values (#{id,jdbcType=BIGINT}, #{vaccine,jdbcType=VARCHAR}, #{pharmacyId,jdbcType=BIGINT},
+      #{appointmentTime,jdbcType=INTEGER}, #{venueStatus,jdbcType=INTEGER},
+      #{startTime,jdbcType=TIMESTAMP}, #{endTime,jdbcType=TIMESTAMP}, #{totalSpot,jdbcType=INTEGER},
+      #{availableSpot,jdbcType=INTEGER}, #{lockSpot,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.pharmacy.appointment.db.po.Venue">
+    insert into venue
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="vaccine != null">
+        vaccine,
+      </if>
+      <if test="pharmacyId != null">
+        pharmacy_id,
+      </if>
+      <if test="appointmentTime != null">
+        appointment_time,
+      </if>
+      <if test="venueStatus != null">
+        venue_status,
+      </if>
+      <if test="startTime != null">
+        start_time,
+      </if>
+      <if test="endTime != null">
+        end_time,
+      </if>
+      <if test="totalSpot != null">
+        total_spot,
+      </if>
+      <if test="availableSpot != null">
+        available_spot,
+      </if>
+      <if test="lockSpot != null">
+        lock_spot,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="vaccine != null">
+        #{vaccine,jdbcType=VARCHAR},
+      </if>
+      <if test="pharmacyId != null">
+        #{pharmacyId,jdbcType=BIGINT},
+      </if>
+      <if test="appointmentTime != null">
+        #{appointmentTime,jdbcType=INTEGER},
+      </if>
+      <if test="venueStatus != null">
+        #{venueStatus,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalSpot != null">
+        #{totalSpot,jdbcType=INTEGER},
+      </if>
+      <if test="availableSpot != null">
+        #{availableSpot,jdbcType=INTEGER},
+      </if>
+      <if test="lockSpot != null">
+        #{lockSpot,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.pharmacy.appointment.db.po.Venue">
+    update venue
+    <set>
+      <if test="vaccine != null">
+        vaccine = #{vaccine,jdbcType=VARCHAR},
+      </if>
+      <if test="pharmacyId != null">
+        pharmacy_id = #{pharmacyId,jdbcType=BIGINT},
+      </if>
+      <if test="appointmentTime != null">
+        appointment_time = #{appointmentTime,jdbcType=INTEGER},
+      </if>
+      <if test="venueStatus != null">
+        venue_status = #{venueStatus,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null">
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null">
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="totalSpot != null">
+        total_spot = #{totalSpot,jdbcType=INTEGER},
+      </if>
+      <if test="availableSpot != null">
+        available_spot = #{availableSpot,jdbcType=INTEGER},
+      </if>
+      <if test="lockSpot != null">
+        lock_spot = #{lockSpot,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.pharmacy.appointment.db.po.Venue">
+    update venue
+    set vaccine = #{vaccine,jdbcType=VARCHAR},
+      pharmacy_id = #{pharmacyId,jdbcType=BIGINT},
+      appointment_time = #{appointmentTime,jdbcType=INTEGER},
+      venue_status = #{venueStatus,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      total_spot = #{totalSpot,jdbcType=INTEGER},
+      available_spot = #{availableSpot,jdbcType=INTEGER},
+      lock_spot = #{lockSpot,jdbcType=INTEGER}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select id="queryVenuesByStatus" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List"/>
+    from venue
+    where venue_status = #{id,jdbcType=SMALLINT}
+  </select>
+
+  <update id="lockSpot" parameterType="java.lang.Long">
+    update venue
+    set available_spot = available_spot - 1,
+        lock_spot = lock_spot + 1
+    where id = #{id,jdbcType=BIGINT}
+    and  available_spot > 0
+  </update>
+
+  <update id="deductSpot" parameterType="java.lang.Long">
+        UPDATE venue
+        SET lock_spot = lock_spot - 1
+        WHERE id = #{id,jdbcType=BIGINT}
+  </update>
+
+  <update id="revertSpot" parameterType="java.lang.Long">
+    update venue
+    set available_spot = available_spot + 1,
+        lock_spot = lock_spot - 1
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
